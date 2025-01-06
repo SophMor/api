@@ -5,7 +5,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import med.voll.api.domain.dto.DatosListadoMedico;
 import med.voll.api.domain.dto.DatosMedicoActualizado;
-import med.voll.api.domain.DatosDireccion;
+import med.voll.api.domain.dto.DatosDireccion;
 import med.voll.api.domain.medico.DatosMedico;
 import med.voll.api.domain.medico.MedicoDTOResponse;
 import med.voll.api.domain.repository.MedicoRepository;

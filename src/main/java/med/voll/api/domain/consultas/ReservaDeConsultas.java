@@ -38,7 +38,8 @@ public class ReservaDeConsultas {
                 throw new ValidationException("Médico no encontrado");
             }
         } else {
-            validadores.forEach(v -> v.validar(datos));
+            DatosAgendarConsulta datosAgendarConsulta = new DatosAgendarConsulta(datos.idPaciente().getId(), datos.idMedico().getId(),datos.fecha(),datos.especialidad());
+            validadores.forEach(v -> v.validar(datosAgendarConsulta));
         }
 
         var paciente = pacienteRepository.findById(datos.idPaciente().getId());

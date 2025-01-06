@@ -1,6 +1,6 @@
 package med.voll.api.domain.medico;
 
-import med.voll.api.domain.DatosDireccion;
+import med.voll.api.domain.dto.DatosDireccion;
 
 public record MedicoDTOResponse(
         Long id,

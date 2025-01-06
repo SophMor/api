@@ -2,11 +2,11 @@ package med.voll.api.domain.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import med.voll.api.domain.MotivoCancelamiento;
 import med.voll.api.domain.paciente.Paciente;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Table(name="consultas")
@@ -25,14 +25,14 @@ public class ConsultaTable {
     private Paciente paciente;
     private LocalDateTime fecha;
 
-/*
+
     @Column(name = "motivo_cancelamiento")
     @Enumerated(EnumType.STRING)
     private MotivoCancelamiento motivoCancelamiento;
 
-    public void cancelar(MotivoCancelamiento motivo) {
-        this.motivoCancelamiento = motivo;
-    }*/
+    public void cancelar(med.voll.api.domain.consultas.@NotNull MotivoCancelamiento motivo) {
+        this.motivoCancelamiento = motivoCancelamiento;
+    }
     public ConsultaTable( MedicoTable medico, Paciente paciente, LocalDateTime fecha) {
 
         this.medico = medico;
@@ -76,4 +76,5 @@ public class ConsultaTable {
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
+
 }

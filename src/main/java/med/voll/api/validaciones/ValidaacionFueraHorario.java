@@ -1,13 +1,13 @@
 package med.voll.api.validaciones;
 
 import jakarta.validation.ValidationException;
-import med.voll.api.domain.consultas.DatosReservaConsultar;
+import med.voll.api.domain.consultas.DatosAgendarConsulta;
 import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 @Component
 public class ValidaacionFueraHorario implements ValidadorConsultas{
-public void validar(DatosReservaConsultar datosReservaConsultar){
+public void validar(DatosAgendarConsulta datosReservaConsultar){
     var fechaConsulta = datosReservaConsultar.fecha();
     var domingo = fechaConsulta.getDayOfWeek().equals(DayOfWeek.SUNDAY);
     var horarioAntesApertura = fechaConsulta.getHour() < 7;

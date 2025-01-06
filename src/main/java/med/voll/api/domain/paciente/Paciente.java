@@ -1,59 +1,79 @@
 package med.voll.api.domain.paciente;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import med.voll.api.domain.DatosDireccion;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import med.voll.api.domain.persistence.DireccionTable;
+
 
 @Table(name = "pacientes")
 @Entity(name = "Paciente")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Paciente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
     private String email;
-    private String documento;
+
     private String telefono;
+
+    private String documento;
 
     @Embedded
     private DireccionTable direccion;
 
+    private Boolean activo;
+
+    public Paciente(DatosRegistroPaciente datos) {
+        this.nombre = datos.nombre();
+        this.email = datos.email();
+        this.telefono = datos.telefono();
+        this.documento = datos.documento();
+        this.activo = true;
+        this.direccion = new DireccionTable(datos.direccion());
+    }
+
     public Paciente() {
     }
 
-    public Paciente(Long id, String nombre, String email, String documento, String telefono, DireccionTable direccion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-        this.documento = documento;
-        this.telefono = telefono;
-        this.direccion = direccion;
+    public void actualizarInformacoes(DatosActualizacionPaciente datos) {
+        if (datos.nombre() != null) {
+            this.nombre = datos.nombre();
+        }
+        if (datos.telefono() != null) {
+            this.telefono = datos.telefono();
+        }
+        if (datos.direccion() != null) {
+            this.direccion.actualizarDatos(datos.direccion());
+        }
+
     }
 
-    public Paciente(@Valid Paciente datos) {
-        this.nombre = datos.getNombre();
-        this.email = datos.getEmail();
-        this.documento = datos.getDocumento();
-        this.telefono = datos.getTelefono();
-        this.direccion = new DireccionTable(datos.getDireccion());
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void eliminar() {
+        this.activo = false;
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nome) {
-        this.nombre = nome;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEmail() {
@@ -64,14 +84,6 @@ public class Paciente {
         this.email = email;
     }
 
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
     public String getTelefono() {
         return telefono;
     }
@@ -80,23 +92,27 @@ public class Paciente {
         this.telefono = telefono;
     }
 
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
+
     public DireccionTable getDireccion() {
         return direccion;
     }
-
 
     public void setDireccion(DireccionTable direccion) {
         this.direccion = direccion;
     }
 
-    public void actualizarInformaciones(Paciente datos) {
-        if (datos.getNombre() != null) {
-            this.nombre = datos.getNombre();
-        }
-        if (datos.getTelefono() != null) {
-            this.telefono = datos.getTelefono();
-        }
-        if (datos.getDireccion() != null)this.direccion= direccion.actualizarDatos(new DatosDireccion(getDireccion().getCiudad(), getDireccion().getDistrito(), getDireccion().getCalle(), getDireccion().getNumero(),getDireccion().getComplemento()));
+    public Boolean getActivo() {
+        return activo;
+    }
 
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }

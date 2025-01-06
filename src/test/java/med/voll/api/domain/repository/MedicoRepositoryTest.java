@@ -1,26 +1,7 @@
 package med.voll.api.domain.repository;
 
-import jakarta.persistence.EntityManager;
-
-import jakarta.transaction.Transactional;
-import med.voll.api.domain.DatosDireccion;
-import med.voll.api.domain.medico.DatosMedico;
-import med.voll.api.domain.medico.Especialidad;
-import med.voll.api.domain.paciente.Paciente;
-import med.voll.api.domain.persistence.ConsultaTable;
-import med.voll.api.domain.persistence.MedicoTable;
-import med.voll.api.domain.repository.MedicoRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.TemporalAdjusters;
 
 import static org.assertj.core.api.Assertions.assertThat;
 /*

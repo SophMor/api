@@ -1,7 +1,7 @@
 package med.voll.api.domain.persistence;
 
 import jakarta.persistence.Embeddable;
-import med.voll.api.domain.DatosDireccion;
+import med.voll.api.domain.dto.DatosDireccion;
 
 @Embeddable
 

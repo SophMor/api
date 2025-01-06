@@ -2,7 +2,7 @@ package med.voll.api.domain.persistence;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.voll.api.domain.DatosDireccion;
+import med.voll.api.domain.dto.DatosDireccion;
 import med.voll.api.domain.dto.DatosMedicoActualizado;
 import med.voll.api.domain.medico.DatosMedico;
 import med.voll.api.domain.medico.Especialidad;
