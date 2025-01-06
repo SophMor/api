@@ -1,0 +1,1 @@
+ALTER TABLE pacientes MODIFY COLUMN documento VARCHAR(20);

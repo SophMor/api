@@ -25,12 +25,16 @@ import java.util.List;
 @RestController
 @ResponseBody
 @RequestMapping("/consultas")
+@SecurityRequirement(name = "bearer-key")
+
 
 @SuppressWarnings("all")
 public class ConsultaController {
 
     @Autowired
     private AgendaDeConsultaService service;
+    @Autowired
+    private ConsultaRepository consultaRepository;
 
     @GetMapping
     public ResponseEntity<Page<DatosDetalleConsulta>> listar(@PageableDefault(size = 10, sort = {"fecha"}) Pageable paginacion) {
@@ -54,7 +58,11 @@ public class ConsultaController {
 
     @GetMapping("/relatorio-mensual/{mes}")
     public ResponseEntity<List<DatosRelatoriosConsultaMensual>> generarRelatorioConsultaMensual(@PathVariable YearMonth mes) {
-        //var relatorio = consultaRepository.?
-        return ResponseEntity.ok(null);
+        int anio = mes.getYear();
+        int mesNumero = mes.getMonthValue();
+
+        List<DatosRelatoriosConsultaMensual> relatorio = consultaRepository.generarRelatorioMensual(anio, mesNumero);
+        return ResponseEntity.ok(relatorio);
     }
+
 }

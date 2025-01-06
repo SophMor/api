@@ -36,10 +36,6 @@ public class SecurityConfiguration {
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) // Añadir filtro personalizado antes del UsernamePasswordAuthenticationFilter
                 .build();
     }
-    
-
-
-
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
